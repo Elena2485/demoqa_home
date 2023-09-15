@@ -18,6 +18,7 @@ class SwagLabs(BasePage):
         self.driver = driver
         self.base_url = 'https://www.saucedemo.com/'
 
+
     def visit(self):
         return self.driver.get(self.base_url)
     click_on_the_icon()
