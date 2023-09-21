@@ -1,11 +1,6 @@
-import pytest
+
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-@pytest.fixture(scope='session')
-def browser():
-    driver = webdriver.Chrome
-    yield driver
-    driver.quit()
 
 ############a.	в файле test_check_swag.py реализуйте следующий тест кейс:
 #перейти на страницу https://www.saucedemo.com/
@@ -14,29 +9,41 @@ def browser():
 from pages.base_page import BasePage
 class SwagLabs(BasePage):
 
-    def __init__(self, driver):
-        self.driver = driver
-        self.base_url = 'https://www.saucedemo.com/'
+    # 6/ перейти на страницу https: // www.saucedemo.com /
+    # проверить наличие иконки
+    def exist_icon(browser):
+        browser.get('https://www.saucedemo.com/')
+        swag_labs_page = SwagLabs(browser)
+        swag_labs_page.visit()
+        swag_labs_page.click_on_the_icon()
+        assert swag_labs_page.exist_icon()
 
- # 6/ перейти на страницу https: // www.saucedemo.com /
- # проверить наличие иконки
-
-    def visit(self):
-        return self.driver.get(self.base_url)
-        return self.click_on_the_icon(self.base_url)
 
 # 7 в файле test_check_swag.py реализуйте следующий тест кейс:
     # перейти на страницу https://www.saucedemo.com/
     # проверить наличие поля имени
-    def find_element(self, locator):
-        return self.driver.find_element('div.login_logo', locator)
+    def check_name(browser):
+        browser.get('https://www.saucedemo.com/')
+        swag_labs_page = SwagLabs(browser)
+        swag_labs_page.visit()
+
+        try:
+            swag_labs_page.find_element(By.CSS_SELECTOR, '#user-name')
+        except NoSuchElementException:
+            assert False
+        assert True
 
 # 7 / перейти на страницу https://www.saucedemo.com/
 # проверить наличие поля пароля
 
-    def get_pass(self):
-#return self.driver.get(self.base_url)
-        if self.find_element('input#password.input_error.form_input') <> 0
-            return True
-         return False
+    def check_field_pass(browser):
+        browser.get('https://www.saucedemo.com/')
+        swag_labs_page = SwagLabs(browser)
+        swag_labs_page.visit()
+
+        try:
+            swag_labs_page.find_element(By.CSS_SELECTOR, '#password')
+        except NoSuchElementException:
+            assert False
+        assert True
 

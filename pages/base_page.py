@@ -7,6 +7,7 @@ class BasePage:
         self.driver = driver
         self.base_url = 'https://www.saucedemo.com/'
 
+#d.	Создайте метод visit который возвращает переход на страницу (.get())
     def visit(self):
         return self.driver.get(self.base_url)
 
